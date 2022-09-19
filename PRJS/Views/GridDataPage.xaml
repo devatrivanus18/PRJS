@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PRJS.ViewModels"
              x:Class="PRJS.Views.GridDataPage"
              Title="GridDataPage">
-    <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding Source}" AutoGenerateColumns="False">
+    <ContentPage.BindingContext>
+        <vm:GridViewModel/>
+    </ContentPage.BindingContext>
+    <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding ListInvoiceSell}" AutoGenerateColumns="False">
         <telerik:RadDataGrid.Columns>
-            <telerik:DataGridTextColumn PropertyName="Name" SizeMode="Fixed"/>
-            <telerik:DataGridNumericalColumn PropertyName="Value"/>
-            <telerik:DataGridBooleanColumn PropertyName="IsEnabled"/>
-            <telerik:DataGridDateColumn PropertyName="Date" CellContentFormat="{}{0:MM/dd/yyyy}"/>
+            <telerik:DataGridTextColumn  CanUserEdit="True" PropertyName="eName" SizeMode="Auto"/>
+            <telerik:DataGridNumericalColumn PropertyName="invoiceVATID" SizeMode="Auto"/>
         </telerik:RadDataGrid.Columns>
     </telerik:RadDataGrid>
 </ContentPage>

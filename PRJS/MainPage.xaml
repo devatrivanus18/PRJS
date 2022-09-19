@@ -7,10 +7,13 @@
     <ScrollView>
         <StackLayout>
             <Frame CornerRadius="5" Margin="10" Padding="10,40,10,40" HasShadow="True">
+                <StackLayout>
                 <telerik:RadEntry x:Name="entry" Placeholder="English name"
                                     FontSize="14"
                                     PlaceholderColor="#99000000"
-                                    AutomationId="radEntry"/>   
+                                    AutomationId="radEntry"/>
+                <Entry Placeholder="TEST"/>
+                </StackLayout>
             </Frame>
         </StackLayout>
     </ScrollView>
