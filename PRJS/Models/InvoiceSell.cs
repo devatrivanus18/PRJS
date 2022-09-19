@@ -16,6 +16,7 @@ public class InvoiceSell
     public DateTime dateH { get; set; }
     public DateTime dateG { get; set; }
     public string eName { get; set; } = string.Empty;
+    public string invoiceNo { get; set; } = string.Empty;
     [AutoIncrement]
     [PrimaryKey]
     public int? invoiceVATID { get; set; }

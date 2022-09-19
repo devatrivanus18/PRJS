@@ -1,20 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:vm="clr-namespace:PRJS.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PRJS.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:GridViewModel/>
+    </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout>
             <Frame CornerRadius="5" Margin="10" Padding="10,40,10,40" HasShadow="True" BackgroundColor="WhiteSmoke">
                 <StackLayout Orientation="Vertical">
-                    <Grid Margin="5">
+                    <Grid Margin="2,-5,-5,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <telerik:RadButton x:Name="btnPostAndPrint" Text="Post and Print" Grid.Column="0" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
-                        <telerik:RadButton x:Name="btnNewInvoice" Text="New Invoice" Grid.Column="2" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
+                        <telerik:RadButton Command="{Binding SaveCommand}" x:Name="btnPostAndPrint" Text="Post and Print" Grid.Column="0" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
+                        <telerik:RadButton Command="{Binding UpdateCommand}" x:Name="btnNewInvoice" Text="New Invoice" Grid.Column="2" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
                     </Grid>
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
@@ -28,31 +33,31 @@
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0" Orientation="Horizontal" Padding="5">
                             <Label Text="Void" Margin="5,27"/>
-                            <CheckBox Color="#92afd6"/>
+                            <CheckBox IsChecked="{Binding InvoiceSell.isVoid}" Color="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Horizontal" Padding="5">
                             <Label Text="Posted" Margin="5,27"/>
-                            <CheckBox Color="#92afd6"/>
+                            <CheckBox IsChecked="{Binding InvoiceSell.isPosted}" Color="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Orientation="Horizontal" Padding="5">
                             <Label Text="Deposit/Payments" Margin="5,27"/>
-                            <CheckBox Color="#92afd6"/>
+                            <CheckBox IsChecked="{Binding InvoiceSell.isPayments}" Color="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="3" Orientation="Horizontal" Padding="5">
                             <Label Text="Out Delivery" Margin="5,27"/>
-                            <CheckBox Color="#92afd6"/>
+                            <CheckBox IsChecked="{Binding InvoiceSell.isOutDelivery}" Color="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="4" Padding="5">
                             <Label Text="Date Hijri" Padding="5" />
-                            <telerik:RadDatePicker x:Name="dateH" BorderColor="#92afd6"/>
+                            <telerik:RadDatePicker Date="{Binding InvoiceSell.dateH}" x:Name="dateH" BorderColor="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="5" Padding="5">
                             <Label Text="Date Gregorian" Padding="5" />
-                            <telerik:RadDatePicker x:Name="dateG" BorderColor="#92afd6"/>
+                            <telerik:RadDatePicker Date="{Binding InvoiceSell.dateG}" x:Name="dateG" BorderColor="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="6" Padding="5">
                             <Label Text="Invoice #" Padding="5" />
-                            <telerik:RadEntry x:Name="invoiceNo" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding InvoiceSell.invoiceNo}" x:Name="invoiceNo" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                     </Grid>
                     <Grid Margin="5">
@@ -63,15 +68,15 @@
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0" Padding="5">
                             <Label Text="English Name" Padding="5"/>
-                            <telerik:RadEntry x:Name="eName" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding InvoiceSell.eName}" x:Name="eName" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Padding="5">
                             <Label Text="Contact" Padding="5" />
-                            <telerik:RadEntry x:Name="mainContact1" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry  Text="{Binding InvoiceSell.mainContact1}" x:Name="mainContact1" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Padding="5">
                             <Label Text="Arabic Name" Padding="5" />
-                            <telerik:RadEntry x:Name="aName" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding InvoiceSell.aName}" x:Name="aName" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                     </Grid>
                     <Grid Margin="5">
@@ -81,11 +86,11 @@
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0" Padding="5">
                             <Label Text="VAT ID" Padding="5" />
-                            <telerik:RadEntry x:Name="invoiceVATID" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding InvoiceSell.invoiceVATID}" x:Name="invoiceVATID" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Padding="5">
                             <Label Text="Client" Padding="5" />
-                            <telerik:RadEntry x:Name="clientVendorNo" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding InvoiceSell.clientVendorNo}" x:Name="clientVendorNo" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                     </Grid>
                     <Grid Margin="5">
@@ -96,7 +101,7 @@
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0" Padding="5">
                             <Label Text="C..." Padding="5" />
-                            <telerik:RadEntry x:Name="lblC" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding InvoiceSell.carNo}" x:Name="lblC" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Padding="5">
                             <Label Text="Barcode" Padding="5" />

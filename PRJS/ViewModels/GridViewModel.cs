@@ -2,6 +2,7 @@
 using MvvmHelpers.Commands;
 using PRJS.Models;
 using PRJS.Services;
+using PRJS.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Command = MvvmHelpers.Commands.Command;
@@ -35,16 +36,10 @@ public class GridViewModel : BaseViewModel
 
     public async void saveInvoiceSell()
     {
-        InvoiceSell invoicesell = new InvoiceSell 
-        {
-            aName = _invoiceSell.aName,
-            
-        };
+        InvoiceSell invoicesell = InvoiceSell;
 
-        InvoiceSellUnit invoicesellunit = new InvoiceSellUnit
-        {
-             discount = _invoiceSellUnit.discount,
-        };
+
+        InvoiceSellUnit invoicesellunit = InvoiceSellUnit;
 
         await DatabaseService.SaveInvoiceSellAsync(invoicesell);
         await DatabaseService.SaveInvoiceSellUnitAsync(invoicesellunit);
@@ -52,7 +47,7 @@ public class GridViewModel : BaseViewModel
 
     public async void UpdateInvoiceSell()
     {
-        await DatabaseService.UpdateInvoiceSellAsync(null);
+       await Application.Current.MainPage.Navigation.PushAsync(new GridDataPage());
     }
 
     //public async void deleteInvoiceSell()
