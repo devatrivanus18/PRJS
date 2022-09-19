@@ -3,16 +3,94 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PRJS.MainPage">
-
     <ScrollView>
         <StackLayout>
             <Frame CornerRadius="5" Margin="10" Padding="10,40,10,40" HasShadow="True">
-                <StackLayout>
-                <telerik:RadEntry x:Name="entry" Placeholder="English name"
-                                    FontSize="14"
-                                    PlaceholderColor="#99000000"
-                                    AutomationId="radEntry"/>
-                <Entry Placeholder="TEST"/>
+                <StackLayout Orientation="Vertical">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <telerik:RadButton x:Name="btnPostAndPrint" Text="Post and Print" Grid.Column="0" MaximumHeightRequest="30"/>
+                        <telerik:RadButton x:Name="btnNewInvoice" Text="New Invoice" Grid.Column="2" MaximumHeightRequest="30"/>
+                    </Grid>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="Invoice #" Padding="5" />
+                            <telerik:RadEntry x:Name="invoiceNo"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="VAT ID" Padding="5" />
+                            <telerik:RadEntry x:Name="invoiceVATID"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" >
+                            <Label Text="Date Hijri" Padding="5" />
+                            <telerik:RadDatePicker x:Name="dateH"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Date Gregorian" Padding="5" />
+                            <telerik:RadDatePicker x:Name="dateG" />
+                        </StackLayout>
+                    </Grid>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" >
+                            <Label Text="English Name" Padding="5" />
+                            <telerik:RadEntry x:Name="eName"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Arabic Name" Padding="5" />
+                            <telerik:RadEntry x:Name="aName"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" >
+                            <Label Text="Contact" Padding="5" />
+                            <telerik:RadEntry x:Name="mainContact1"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Client" Padding="5" />
+                            <telerik:RadEntry x:Name="clientVendorNo"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="C..." Padding="5" />
+                            <SearchBar x:Name="lblC"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" >
+                            <Label Text="Barcode" Padding="5" />
+                            <SearchBar x:Name="txtBarcode"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2">
+                            <Label Text="Search Product" Padding="5" />
+                            <SearchBar x:Name="lblSearchProduct"/>
+                        </StackLayout>
+                    </Grid>
                 </StackLayout>
             </Frame>
         </StackLayout>
