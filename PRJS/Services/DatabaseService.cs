@@ -26,6 +26,7 @@ public class DatabaseService : BaseViewModel
             table2 = new SQLiteAsyncConnection(dbpath);
             table2.CreateTableAsync<InvoiceSellUnit>().Wait();
             getdataInvoiceSell();
+            getdataInvoiceSellUnit();
         }
         catch (Exception ex)
         {
@@ -93,9 +94,24 @@ public class DatabaseService : BaseViewModel
 
         return table2.Table<InvoiceSellUnit>().ToListAsync();
     }
+
+
+
+    public Task<int> SaveInvoiceSellUnitAsync(InvoiceSellUnit invoiceSellUnit)
+    {
+        // Save a new note.
+
+        return table2.InsertAsync(invoiceSellUnit);
+    }
+
+    public Task<int> UpdateInvoiceSellUnitAsync(InvoiceSellUnit invoiceSellUnit)
+    {
+        return table2.UpdateAsync(invoiceSellUnit);
+    }
+
+    public Task<int> DeleteInvoiceSellUnitAsync(InvoiceSellUnit invoiceSellUnit)
+    {
+        return table2.DeleteAsync(invoiceSellUnit);
+    }
     #endregion
-
-
-
-    
 }
