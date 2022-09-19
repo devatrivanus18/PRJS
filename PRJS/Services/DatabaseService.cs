@@ -10,10 +10,11 @@ public class DatabaseService : BaseViewModel
     private ObservableCollection<InvoiceSell> _listInvoiceSell = new ObservableCollection<InvoiceSell>();
     public ObservableCollection<InvoiceSell> ListInvoiceSell { get => _listInvoiceSell; set => SetProperty(ref _listInvoiceSell, value); }
 
-    readonly SQLiteAsyncConnection database;
+    public SQLiteAsyncConnection database;
     public DatabaseService()
     {
         string dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dbStore.db3");
+        database = new SQLiteAsyncConnection(dbpath);
         if (!File.Exists(dbpath))
         {
             try
@@ -46,7 +47,7 @@ public class DatabaseService : BaseViewModel
 
     public Task<int> SaveInvoiceSellAsync(InvoiceSell invoiceSell)
     {
-        if (invoiceSell.buildingNo != null)
+        if (invoiceSell.invoiceVATID.ToString() != null)
         {
             // Update an existing note.
             return database.UpdateAsync(invoiceSell);
