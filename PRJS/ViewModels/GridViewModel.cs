@@ -1,7 +1,10 @@
 ﻿using MvvmHelpers;
+using MvvmHelpers.Commands;
 using PRJS.Models;
 using PRJS.Services;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Command = MvvmHelpers.Commands.Command;
 
 namespace PRJS.ViewModels;
 
@@ -18,19 +21,33 @@ public class GridViewModel : BaseViewModel
 
     private InvoiceSellUnit _invoiceSellUnit = new InvoiceSellUnit();
     public InvoiceSellUnit InvoiceSellUnit { get => _invoiceSellUnit; set => SetProperty(ref _invoiceSellUnit, value); }
-
+    public ICommand SaveCommand { get; set; }
+    public ICommand UpdateCommand { get; set; }
     public DatabaseService DatabaseService { get; set; }
     public GridViewModel()
     {
         DatabaseService = new DatabaseService();
         ListInvoiceSell = DatabaseService.ListInvoiceSell;
+        SaveCommand = new Command(saveInvoiceSell);
+        UpdateCommand = new Command(UpdateInvoiceSell);
     }
 
 
     public async void saveInvoiceSell()
     {
-        InvoiceSell invoice = new InvoiceSell { eName = "Deva Trivanus2" };
-        await DatabaseService.SaveInvoiceSellAsync(invoice);
+        InvoiceSell invoicesell = new InvoiceSell 
+        {
+            aName = _invoiceSell.aName,
+            
+        };
+
+        InvoiceSellUnit invoicesellunit = new InvoiceSellUnit
+        {
+             discount = _invoiceSellUnit.discount,
+        };
+
+        await DatabaseService.SaveInvoiceSellAsync(invoicesell);
+        await DatabaseService.SaveInvoiceSellUnitAsync(invoicesellunit);
     }
 
     public async void UpdateInvoiceSell()
@@ -38,8 +55,8 @@ public class GridViewModel : BaseViewModel
         await DatabaseService.UpdateInvoiceSellAsync(null);
     }
 
-    public async void deleteInvoiceSell()
-    {
-        await DatabaseService.DeleteInvoiceSellAsync(null);
-    }
+    //public async void deleteInvoiceSell()
+    //{
+    //    await DatabaseService.DeleteInvoiceSellAsync(null);
+    //}
 }
