@@ -1,4 +1,5 @@
-﻿using PRJS.Models;
+﻿using MvvmHelpers;
+using PRJS.Models;
 using PRJS.Services;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PRJS.ViewModels;
 
-public class GridViewModel
+public class GridViewModel : BaseViewModel
 {
     private ObservableCollection<InvoiceSell> _listInvoiceSell = new ObservableCollection<InvoiceSell>();
     public ObservableCollection<InvoiceSell> ListInvoiceSell { get => _listInvoiceSell; set => SetProperty(ref _listInvoiceSell, value); }
