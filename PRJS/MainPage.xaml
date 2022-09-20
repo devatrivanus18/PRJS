@@ -21,7 +21,7 @@
                         <telerik:RadButton Command="{Binding SaveCommand}" x:Name="btnPostAndPrint" Text="Post and Print" Grid.Column="0" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
                         <telerik:RadButton Command="{Binding UpdateCommand}" x:Name="btnNewInvoice" Text="New Invoice" Grid.Column="2" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
                     </Grid>
-                    <Grid Margin="5">
+                    <Grid Margin="2,-8,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -39,7 +39,7 @@
                             <Label Text="Posted" Margin="5,27"/>
                             <CheckBox IsChecked="{Binding InvoiceSell.isPosted}" Color="#92afd6"/>
                         </StackLayout>
-                        <StackLayout Grid.Column="2" Orientation="Horizontal" Padding="5">
+                        <StackLayout Grid.Column="2" Orientation="Horizontal" Padding="-20,5,0,0">
                             <Label Text="Deposit/Payments" Margin="5,27"/>
                             <CheckBox IsChecked="{Binding InvoiceSell.isPayments}" Color="#92afd6"/>
                         </StackLayout>
@@ -57,10 +57,10 @@
                         </StackLayout>
                         <StackLayout Grid.Column="6" Padding="5">
                             <Label Text="Invoice #" Padding="5" />
-                            <telerik:RadEntry Text="{Binding InvoiceSell.invoiceNo}" x:Name="invoiceNo" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding InvoiceSell.invoiceNo}" IsEnabled="False" x:Name="invoiceNo" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                     </Grid>
-                    <Grid Margin="5">
+                    <Grid Margin="2,-15,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -79,7 +79,7 @@
                             <telerik:RadEntry Text="{Binding InvoiceSell.aName}" x:Name="aName" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                     </Grid>
-                    <Grid Margin="5">
+                    <Grid Margin="2,-12,2,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -93,7 +93,7 @@
                             <telerik:RadEntry Text="{Binding InvoiceSell.clientVendorNo}" x:Name="clientVendorNo" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                     </Grid>
-                    <Grid Margin="5">
+                    <Grid Margin="2,-15,2,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -111,6 +111,66 @@
                             <Label Text="Search Product" Padding="5" />
                             <telerik:RadEntry x:Name="lblSearchProduct" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
+                    </Grid>
+                    <Frame BackgroundColor="White" CornerRadius="0" MinimumHeightRequest="100" Margin="8, 10,0,0" BorderColor="White">
+                    </Frame>
+                    <Grid Margin="2,-5,-5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Padding="5">
+                            <Label Text="Sub Net Total + Tax" Padding="5" />
+                            <telerik:RadEntry IsEnabled="False" x:Name="subNetTotalPlusTax" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Padding="5">
+                            <Label Text="Tax Total" Padding="5" />
+                            <telerik:RadEntry x:Name="taxRate1_Total" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Padding="5">
+                            <Label Text="Sub Net Total" Padding="5" />
+                            <telerik:RadEntry x:Name="subNetTotal" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="3" Padding="5">
+                            <Label Text="Sub Total Discount" Padding="5" />
+                            <telerik:RadEntry x:Name="subTotalDiscount" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="4" Padding="5">
+                            <Label Text="Sub Quantity" Padding="5" />
+                            <telerik:RadEntry x:Name="subQuantity" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="5" Padding="5">
+                            <Label Text="Amount Left After Bills" Padding="5" />
+                            <telerik:RadEntry x:Name="amountLeftAfterBills" IsEnabled="False" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Margin="2, -5, -5, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Column="0" Grid.Row="0" Padding="5">
+                            <Label Text="Amount Left For Us"/>
+                            <telerik:RadEntry x:Name="amountLeft" IsEnabled="False" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                        </StackLayout>
+                        <telerik:RadButton x:Name="btnAmountPayed3" Text="Visa/Master" Grid.Column="1" Grid.Row="0" Margin="5" BackgroundColor="LightGray"/>
+                        <telerik:RadEntry x:Name="payed3" Grid.Column="1" Grid.Row="1" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6" Margin="5"/>
+                        <telerik:RadButton x:Name="btnAmountPayed2" Text="SPAN" Grid.Column="2" Grid.Row="0" Margin="5" BackgroundColor="LightGray"/>
+                        <telerik:RadEntry x:Name="payed2" Grid.Column="2" Grid.Row="1" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6" Margin="5"/>
+                        <telerik:RadButton x:Name="btnAmountPayed1" Text="Cash" Grid.Column="3" Grid.Row="0" Margin="5" BackgroundColor="LightGray"/>
+                        <telerik:RadEntry x:Name="payed1" Grid.Column="3" Grid.Row="1" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6" Margin="5"/>
+                        <telerik:RadButton x:Name="btnCalc" Text="Calculator" Grid.Column="4" Grid.Row="0" Margin="5" BackgroundColor="LightGray"/>
                     </Grid>
                 </StackLayout>
             </Frame>
