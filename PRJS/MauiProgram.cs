@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.DependencyInjection;
 using PRJS.Services;
 using PRJS.ViewModels;
 using Telerik.Maui.Controls.Compatibility;
@@ -21,6 +22,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
         builder.Services.AddSingleton(new DatabaseService());
+		builder.Services.AddScoped<IInvoiceSelected, InvoiceSelectedService>();
         builder.Services.AddSingleton(new HomeViewModel());
         builder.Services.AddSingleton(new GridViewModel());
         return builder.Build();

@@ -3,6 +3,7 @@
 xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:PRJS.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="PRJS.Views.GridDataPage"
              Title="GridDataPage">
     <ContentPage.BindingContext>
@@ -11,20 +12,20 @@ xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
     <ScrollView>
     <StackLayout>
     <Frame>
-            <StackLayout>
-                <Label  HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" Text="Data Invoice Sell"/>
-                <telerik:RadDataGrid  ItemsSource="{Binding ListInvoiceSell}" AutoGenerateColumns="True">
-                </telerik:RadDataGrid>
-            </StackLayout>
+             <StackLayout>
+                <Label  HorizontalOptions="CenterAndExpand" FontSize="20" Padding="5" FontAttributes="Bold" Text="Invoices"/>
+                    <Button Text="Add Data" Margin="5" Padding="5" Command="{Binding SetAddInvoicePage}" WidthRequest="100" HorizontalOptions="StartAndExpand"/>
+                    <telerik:RadDataGrid  ItemsSource="{Binding ListInvoiceSell}" AutoGenerateColumns="True" SelectionMode="Single" SelectionUnit="Row" x:Name="InvoicesGrid">
+                        <telerik:RadDataGrid.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                              EventName="SelectionChanged"
+                                              Command="{Binding SelectedInvoice}"
+                                              CommandParameter="{Binding Source={x:Reference InvoicesGrid},
+                                              Path=SelectedItems}"/>
+                        </telerik:RadDataGrid.Behaviors>
+                    </telerik:RadDataGrid>
 
-    </Frame>
-        <StackLayout>
-                <Label  HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" Text="Data Invoice Sell Unit"/>
-            <telerik:RadDataGrid  ItemsSource="{Binding  ListInvoiceSellUnit}" AutoGenerateColumns="True">
-            </telerik:RadDataGrid>
-        </StackLayout>
-        <Frame>
-        
+                </StackLayout>
     </Frame>
     </StackLayout>
     </ScrollView>

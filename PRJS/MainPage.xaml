@@ -20,8 +20,8 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <telerik:RadButton Command="{Binding MoveToGridPageCommand}" x:Name="btnPostAndPrint" Text="Detail Data" Grid.Column="0" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
-                        <telerik:RadButton Command="{Binding SaveCommand}" x:Name="btnNewInvoice" Text="Save Invoice" Grid.Column="2" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
+                        <telerik:RadButton x:Name="btnPostAndPrint" Text="Post and Print" Grid.Column="0" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
+                        <telerik:RadButton x:Name="btnNewInvoice" Command="{Binding SaveCommand}" Text="Save Invoice" Grid.Column="2" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
                     </Grid>
                     <Grid Margin="2,-8,0,0">
                         <Grid.ColumnDefinitions>

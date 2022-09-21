@@ -10,9 +10,6 @@ namespace PRJS.ViewModels;
 
 public class HomeViewModel : BaseViewModel
 {
-    private ObservableCollection<InvoiceSell> _listInvoiceSell = new ObservableCollection<InvoiceSell>();
-    public ObservableCollection<InvoiceSell> ListInvoiceSell { get => _listInvoiceSell; set => SetProperty(ref _listInvoiceSell, value); }
-
     private ObservableCollection<InvoiceSellUnit> _listInvoiceSellUnit = new ObservableCollection<InvoiceSellUnit>();
     public ObservableCollection<InvoiceSellUnit> ListInvoiceSellUnit { get => _listInvoiceSellUnit; set => SetProperty(ref _listInvoiceSellUnit, value); }
 
@@ -21,7 +18,6 @@ public class HomeViewModel : BaseViewModel
 
     private InvoiceSellUnit _invoiceSellUnit = new InvoiceSellUnit();
     public InvoiceSellUnit InvoiceSellUnit { get => _invoiceSellUnit; set => SetProperty(ref _invoiceSellUnit, value); }
-
 
     private ObservableCollection<Product> _products = new ObservableCollection<Product>();
     public ObservableCollection<Product> Products { get => _products; set => SetProperty(ref _products, value); }
@@ -36,23 +32,25 @@ public class HomeViewModel : BaseViewModel
     public float SubNetTotalPlusTax { get => _subNetTotalPlusTax; set => SetProperty(ref _subNetTotalPlusTax, value); }
 
     public Product product { get; set; }
+    public InvoiceSell SelectedInvoice { get; set; } = new InvoiceSell();
 
     public ICommand SaveCommand { get; set; }
-    public ICommand MoveToGridPageCommand { get; set; }
     public ICommand SaveDetailCommand { get; set; }
     public ICommand OnSelectedItemCommand { get; set; }
     public ICommand OnEditingItemCommand { get; set; }
     public ICommand CalculateCommand { get; set; }
     public DatabaseService DatabaseService { get; set; }
+    IInvoiceSelected DataService;
+
     public HomeViewModel()
     {
         DatabaseService = new DatabaseService();
-        ListInvoiceSell = DatabaseService.ListInvoiceSell;
+        DataService = new InvoiceSelectedService();
         SaveCommand = new Command(SaveInvoice);
-        MoveToGridPageCommand = new Command(MoveToGridPage);
         OnSelectedItemCommand = new Command(AddItemToInvoiceSellUnit);
         OnEditingItemCommand = new Command(OnEditingCell);
         CalculateCommand = new Command(CalculateTotal);
+        SelectedInvoice = DataService.InvoiceSelected;
         Products.Add(new Product { unitNo = "1", eName = "Apple", aName = "يالللقرت٤", itemNo = 1, price = 100000 });
         Products.Add(new Product { unitNo = "2", eName = "Grape", aName = "يالللقرت٤", itemNo = 2, price = 1300000 });
         Products.Add(new Product { unitNo = "3", eName = "Banana", aName = "يالللقرت٤", itemNo = 3, price = 1600000 });
@@ -82,7 +80,6 @@ public class HomeViewModel : BaseViewModel
 
     private void AddItemToInvoiceSellUnit(object obj)
     {
-
         var item = obj as Product;
         ListInvoiceSellUnit.Add(new InvoiceSellUnit
         {
@@ -94,9 +91,6 @@ public class HomeViewModel : BaseViewModel
         });
     }
 
-
-
-
     public async void saveInvoiceSell()
     {
         InvoiceSell invoicesell = InvoiceSell;
@@ -104,6 +98,9 @@ public class HomeViewModel : BaseViewModel
         invoicesell.taxRate1_Total = TaxTotal;
         invoicesell.subNetTotalPlusTax = SubNetTotalPlusTax;
         await DatabaseService.SaveInvoiceSellAsync(invoicesell);
+        await Application.Current.MainPage.Navigation.PushAsync(new GridDataPage());
+
+
     }
 
     public async void saveInvoiceSellUnit()
@@ -116,10 +113,4 @@ public class HomeViewModel : BaseViewModel
             await DatabaseService.SaveInvoiceSellUnitAsync(invoicesellunit);
         }
     }
-
-    public async void MoveToGridPage()
-    {
-        await Application.Current.MainPage.Navigation.PushAsync(new GridDataPage());
-    }
-
 }

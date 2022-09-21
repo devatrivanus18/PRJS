@@ -32,5 +32,4 @@ public class InvoiceSell
     public float? subNetTotalDiscount { get; set; }
     public float? subQuantity { get; set; }
     public float? amountLeftAfterAllBills { get; set; }
-   // public List<InvoiceSellUnit> invoiceSellUnits { get; set; }
 }

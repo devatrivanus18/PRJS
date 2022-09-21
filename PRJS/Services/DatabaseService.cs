@@ -12,8 +12,7 @@ public class DatabaseService : BaseViewModel
 
     private ObservableCollection<InvoiceSellUnit> _listInvoiceSellUnit = new ObservableCollection<InvoiceSellUnit>();
     public ObservableCollection<InvoiceSellUnit> ListInvoiceSellUnit { get => _listInvoiceSellUnit; set => SetProperty(ref _listInvoiceSellUnit, value); }
-
-
+    
     public SQLiteAsyncConnection table1;
     public SQLiteAsyncConnection table2;
     public DatabaseService()
@@ -26,8 +25,6 @@ public class DatabaseService : BaseViewModel
             table1.CreateTableAsync<InvoiceSell>().Wait();
             table2 = new SQLiteAsyncConnection(dbpath);
             table2.CreateTableAsync<InvoiceSellUnit>().Wait();
-            //table1.DeleteAllAsync<InvoiceSell>();
-            //table2.DeleteAllAsync<InvoiceSellUnit>();
             getdataInvoiceSell();
             getdataInvoiceSellUnit();
         }
@@ -37,7 +34,6 @@ public class DatabaseService : BaseViewModel
             ex.Message.ToString();
         }
     }
-
 
     #region Invoice Sell
     public void getdataInvoiceSell()
