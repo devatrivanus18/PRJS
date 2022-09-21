@@ -123,14 +123,14 @@
                         </StackLayout>
                     </Grid>
                     <Frame BackgroundColor="White" CornerRadius="0" MinimumHeightRequest="100" Margin="8, 10,0,0" BorderColor="White">
-                        <telerik:RadDataGrid UserEditMode="Cell"  ItemsSource="{Binding ListInvoiceSellUnit}"  x:Name="datagrid" AutoGenerateColumns="True">
-                            <!--<telerik:RadDataGrid.Behaviors>
+                        <telerik:RadDataGrid  UserEditMode="Cell"  ItemsSource="{Binding ListInvoiceSellUnit}"  x:Name="datagrid" AutoGenerateColumns="True">
+                            <telerik:RadDataGrid.Behaviors>
                                 <toolkit:EventToCommandBehavior
                                               EventName="CurrentCellChanged"
                                               Command="{Binding OnEditingItemCommand}"
                                               CommandParameter="{Binding Source={x:Reference datagrid},
-                                              Path=CurrentCell}"/>
-                            </telerik:RadDataGrid.Behaviors>-->
+                                              Path=SelectedItem}"/>
+                            </telerik:RadDataGrid.Behaviors>
                         </telerik:RadDataGrid>
                     </Frame>
                     <Grid Margin="2,-5,-5,0">
@@ -152,7 +152,7 @@
                         </StackLayout>
                         <StackLayout Grid.Column="2" Padding="5">
                             <Label Text="Sub Net Total" Padding="5" />
-                            <telerik:RadEntry x:Name="subNetTotal" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding Total}" x:Name="subNetTotal" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="3" Padding="5">
                             <Label Text="Sub Total Discount" Padding="5" />
@@ -189,7 +189,7 @@
                         <telerik:RadEntry x:Name="payed2" Grid.Column="2" Grid.Row="1" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6" Margin="5"/>
                         <telerik:RadButton x:Name="btnAmountPayed1" Text="Cash" Grid.Column="3" Grid.Row="0" Margin="5" BackgroundColor="LightGray"/>
                         <telerik:RadEntry x:Name="payed1" Grid.Column="3" Grid.Row="1" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6" Margin="5"/>
-                        <telerik:RadButton x:Name="btnCalc" Text="Calculator" Grid.Column="4" Grid.Row="0" Margin="5" BackgroundColor="LightGray"/>
+                        <telerik:RadButton x:Name="btnCalc" Command="{Binding CalculateCommand}"  Text="Calculator" Grid.Column="4" Grid.Row="0" Margin="5" BackgroundColor="LightGray"/>
                     </Grid>
                 </StackLayout>
             </Frame>
