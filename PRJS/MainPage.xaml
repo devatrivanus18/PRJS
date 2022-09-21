@@ -3,10 +3,12 @@
              xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:vm="clr-namespace:PRJS.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Name="_MainPage"
              x:Class="PRJS.MainPage">
 
     <ContentPage.BindingContext>
-        <vm:GridViewModel/>
+        <vm:HomeViewModel/>
     </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout>
@@ -18,8 +20,8 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <telerik:RadButton Command="{Binding SaveCommand}" x:Name="btnPostAndPrint" Text="Post and Print" Grid.Column="0" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
-                        <telerik:RadButton Command="{Binding UpdateCommand}" x:Name="btnNewInvoice" Text="New Invoice" Grid.Column="2" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
+                        <telerik:RadButton Command="{Binding MoveToGridPageCommand}" x:Name="btnPostAndPrint" Text="Detail Data" Grid.Column="0" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
+                        <telerik:RadButton Command="{Binding SaveCommand}" x:Name="btnNewInvoice" Text="Save Invoice" Grid.Column="2" MaximumHeightRequest="30" Padding="5" BackgroundColor="LightGray"/>
                     </Grid>
                     <Grid Margin="2,-8,0,0">
                         <Grid.ColumnDefinitions>
@@ -108,11 +110,28 @@
                             <telerik:RadEntry x:Name="txtBarcode" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Padding="5">
-                            <Label Text="Search Product" Padding="5" />
-                            <telerik:RadEntry x:Name="lblSearchProduct" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <Label Text="Products" Padding="5" />
+                            <telerik:RadListPicker ItemsSource="{Binding Products}" DisplayMemberPath="eName"  x:Name="DistanceDropdown">
+                                <telerik:RadListPicker.Behaviors>
+                                    <toolkit:EventToCommandBehavior
+                                              EventName="SelectionChanged"
+                                              Command="{Binding OnSelectedItemCommand}"
+                                              CommandParameter="{Binding Source={x:Reference DistanceDropdown},
+                                              Path=SelectedItem}"/>
+                                </telerik:RadListPicker.Behaviors>
+                                </telerik:RadListPicker>
                         </StackLayout>
                     </Grid>
                     <Frame BackgroundColor="White" CornerRadius="0" MinimumHeightRequest="100" Margin="8, 10,0,0" BorderColor="White">
+                        <telerik:RadDataGrid UserEditMode="Cell"  ItemsSource="{Binding ListInvoiceSellUnit}"  x:Name="datagrid" AutoGenerateColumns="True">
+                            <!--<telerik:RadDataGrid.Behaviors>
+                                <toolkit:EventToCommandBehavior
+                                              EventName="CurrentCellChanged"
+                                              Command="{Binding OnEditingItemCommand}"
+                                              CommandParameter="{Binding Source={x:Reference datagrid},
+                                              Path=CurrentCell}"/>
+                            </telerik:RadDataGrid.Behaviors>-->
+                        </telerik:RadDataGrid>
                     </Frame>
                     <Grid Margin="2,-5,-5,0">
                         <Grid.ColumnDefinitions>

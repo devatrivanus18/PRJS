@@ -20,6 +20,7 @@ public class DatabaseService : BaseViewModel
     {
         try
         {
+
             string dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "StoreDB_501");
             table1 = new SQLiteAsyncConnection(dbpath);
             table1.CreateTableAsync<InvoiceSell>().Wait();

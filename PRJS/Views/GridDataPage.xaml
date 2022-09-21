@@ -8,6 +8,24 @@ xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
     <ContentPage.BindingContext>
         <vm:GridViewModel/>
     </ContentPage.BindingContext>
-    <telerik:RadDataGrid x:Name="dataGrid" ItemsSource="{Binding ListInvoiceSell}" AutoGenerateColumns="True">
-    </telerik:RadDataGrid>
+    <ScrollView>
+    <StackLayout>
+    <Frame>
+            <StackLayout>
+                <Label  HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" Text="Data Invoice Sell"/>
+                <telerik:RadDataGrid  ItemsSource="{Binding ListInvoiceSell}" AutoGenerateColumns="True">
+                </telerik:RadDataGrid>
+            </StackLayout>
+
+    </Frame>
+        <StackLayout>
+                <Label  HorizontalOptions="CenterAndExpand" FontSize="20" FontAttributes="Bold" Text="Data Invoice Sell Unit"/>
+            <telerik:RadDataGrid  ItemsSource="{Binding  ListInvoiceSellUnit}" AutoGenerateColumns="True">
+            </telerik:RadDataGrid>
+        </StackLayout>
+        <Frame>
+        
+    </Frame>
+    </StackLayout>
+    </ScrollView>
 </ContentPage>
