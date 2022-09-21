@@ -144,15 +144,15 @@
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="0" Padding="5">
                             <Label Text="Sub Net Total + Tax" Padding="5" />
-                            <telerik:RadEntry IsEnabled="False" x:Name="subNetTotalPlusTax" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry IsEnabled="False" Text="{Binding SubNetTotalPlusTax}"  x:Name="subNetTotalPlusTax" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Padding="5">
                             <Label Text="Tax Total" Padding="5" />
-                            <telerik:RadEntry x:Name="taxRate1_Total" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry x:Name="taxRate1_Total" Text="{Binding TaxTotal}"  BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Padding="5">
                             <Label Text="Sub Net Total" Padding="5" />
-                            <telerik:RadEntry Text="{Binding Total}" x:Name="subNetTotal" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
+                            <telerik:RadEntry Text="{Binding SubNetTotal}" x:Name="subNetTotal" BorderBrush="#92afd6" FocusedBorderBrush="#92afd6"/>
                         </StackLayout>
                         <StackLayout Grid.Column="3" Padding="5">
                             <Label Text="Sub Total Discount" Padding="5" />

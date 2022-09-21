@@ -26,8 +26,14 @@ public class HomeViewModel : BaseViewModel
     private ObservableCollection<Product> _products = new ObservableCollection<Product>();
     public ObservableCollection<Product> Products { get => _products; set => SetProperty(ref _products, value); }
 
-    private float _total;
-    public float Total { get => _total; set => SetProperty(ref _total, value); }
+    private float _subNetTotal;
+    public float SubNetTotal { get => _subNetTotal; set => SetProperty(ref _subNetTotal, value); }
+    private float _taxTotal;
+    public float TaxTotal { get => _taxTotal; set => SetProperty(ref _taxTotal, value); }
+
+
+    private float _subNetTotalPlusTax;
+    public float SubNetTotalPlusTax { get => _subNetTotalPlusTax; set => SetProperty(ref _subNetTotalPlusTax, value); }
 
     public Product product { get; set; }
 
@@ -54,7 +60,9 @@ public class HomeViewModel : BaseViewModel
 
     private void CalculateTotal(object obj)
     {
-        Total = ListInvoiceSellUnit.Sum(x => x.total);
+        SubNetTotal = ListInvoiceSellUnit.Sum(x => x.total);
+        TaxTotal = ListInvoiceSellUnit.Sum(x => x.taxRate1_Total);
+        SubNetTotalPlusTax = SubNetTotal + TaxTotal;
     }
 
     private void OnEditingCell(object obj)
@@ -92,7 +100,9 @@ public class HomeViewModel : BaseViewModel
     public async void saveInvoiceSell()
     {
         InvoiceSell invoicesell = InvoiceSell;
-        invoicesell.subNetTotal = Total;
+        invoicesell.subNetTotal = SubNetTotal;
+        invoicesell.taxRate1_Total = TaxTotal;
+        invoicesell.subNetTotalPlusTax = SubNetTotalPlusTax;
         await DatabaseService.SaveInvoiceSellAsync(invoicesell);
     }
 

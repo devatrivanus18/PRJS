@@ -26,6 +26,8 @@ public class DatabaseService : BaseViewModel
             table1.CreateTableAsync<InvoiceSell>().Wait();
             table2 = new SQLiteAsyncConnection(dbpath);
             table2.CreateTableAsync<InvoiceSellUnit>().Wait();
+            //table1.DeleteAllAsync<InvoiceSell>();
+            //table2.DeleteAllAsync<InvoiceSellUnit>();
             getdataInvoiceSell();
             getdataInvoiceSellUnit();
         }
